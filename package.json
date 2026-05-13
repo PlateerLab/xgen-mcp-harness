@@ -8,13 +8,13 @@
   "type": "module",
   "license": "MIT",
   "author": "김진수 <wlstn010203@gmail.com>",
-  "homepage": "https://github.com/jinsoo96/xgen-mcp-harness#readme",
+  "homepage": "https://github.com/PlateerLab/xgen-mcp-harness#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jinsoo96/xgen-mcp-harness.git"
+    "url": "git+https://github.com/PlateerLab/xgen-mcp-harness.git"
   },
   "bugs": {
-    "url": "https://github.com/jinsoo96/xgen-mcp-harness/issues"
+    "url": "https://github.com/PlateerLab/xgen-mcp-harness/issues"
   },
   "bin": {
     "xgen-mcp-harness": "bin/xgen-mcp-harness.mjs"

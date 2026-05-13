@@ -1,0 +1,48 @@
+{
+  "name": "@plateer-xgen/mcp-harness",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "stdio MCP bridge for xgen hosted harness workflows. One command exposes any saved workflow as a tool in Claude Code / Claude Desktop / Cursor / Cline / Continue.",
+  "type": "module",
+  "license": "MIT",
+  "author": "김진수 <wlstn010203@gmail.com>",
+  "homepage": "https://github.com/jinsoo96/xgen-mcp-harness#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinsoo96/xgen-mcp-harness.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinsoo96/xgen-mcp-harness/issues"
+  },
+  "bin": {
+    "xgen-mcp-harness": "bin/xgen-mcp-harness.mjs"
+  },
+  "files": [
+    "bin/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "xgen",
+    "harness",
+    "claude",
+    "claude-desktop",
+    "claude-code",
+    "cursor",
+    "stdio",
+    "oauth",
+    "agentflow",
+    "workflow",
+    "bridge"
+  ],
+  "scripts": {
+    "start": "node bin/xgen-mcp-harness.mjs"
+  }
+}

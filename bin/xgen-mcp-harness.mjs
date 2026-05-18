@@ -95,13 +95,23 @@ function genState() { return b64url(randomBytes(16)); }
 // ─── OAuth flow (PKCE + loopback callback) ──────────────────────
 function openBrowser(url) {
   const p = platform();
-  const cmd = p === "darwin" ? "open"
-            : p === "win32"  ? "cmd"
-            :                  "xdg-open";
-  const args = p === "win32" ? ["/c", "start", "", url] : [url];
+  // v0.1.1 — Windows cmd `start` 가 URL 안의 `&` 를 shell separator 로 해석 →
+  // 첫 `&` 에서 잘림 → 브라우저가 query 첫 param 만 받아 cluster authorize 호출 시
+  // redirect_uri 누락 invalid_request 발생 (Windows 사용자 OAuth flow 깨짐).
+  // shell: true + URL 의 `&` 를 `^&` 로 escape (Windows cmd literal escape) 박음.
+  // macOS `open` / Linux `xdg-open` 은 args 그대로 전달 (shell parsing 안 거침).
   try {
-    const child = spawn(cmd, args, { detached: true, stdio: "ignore" });
-    child.unref();
+    if (p === "win32") {
+      const escaped = url.replace(/&/g, "^&");
+      const child = spawn("cmd", ["/c", "start", "", escaped], {
+        detached: true, stdio: "ignore", windowsVerbatimArguments: true,
+      });
+      child.unref();
+    } else {
+      const cmd = p === "darwin" ? "open" : "xdg-open";
+      const child = spawn(cmd, [url], { detached: true, stdio: "ignore" });
+      child.unref();
+    }
   } catch (e) {
     console.error(`browser 자동 실행 실패 — 직접 열기: ${url}`);
   }
